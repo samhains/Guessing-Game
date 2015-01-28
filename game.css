@@ -1,0 +1,38 @@
+.vertical-text {
+     color:#A94442;
+     position:relative;
+     float:right;
+
+ }
+.vertical-text2 {
+    color:#A94442;
+    float:left;
+    position:relative;
+    padding-left:40px;
+    padding-right:20px;
+
+}
+
+.main-box{
+    text-align: center;
+    width:300px;
+    height:300px;
+    padding:30px;
+    margin:0px auto;
+}
+
+body {
+    background-color: #EFD6D6;
+}
+
+.button-color{
+    color:white;
+}
+
+.question-marks{
+    color:#A94442;
+}
+.btn-grey {
+    background: #9b59b6;
+    border-color: #9b59b6;
+}
