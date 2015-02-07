@@ -36,3 +36,7 @@ body {
     background: #9b59b6;
     border-color: #9b59b6;
 }
+
+.play-again{
+    display:none;
+}
