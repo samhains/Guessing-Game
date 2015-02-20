@@ -1,12 +1,12 @@
 $(document).ready(function(){
    var num = Math.floor(Math.random()*100);
-   console.log(num);
+
    var remaining = 5;
    var scale=1;
    var performance = "";
    var lastDifference = 0;
    var guesses =[];
-   $('.hint').popover();
+
 
     var gameOver = function(winOrLose){
        event.preventDefault();
@@ -23,7 +23,11 @@ $(document).ready(function(){
        }
 
    };
-
+    //pop out the answer
+    $('.hint').popover();
+    //add answer to the hint
+    var popover = $('.hint').data('bs.popover');
+    popover.options.content = num;
 
     $('form').on('submit',function(event){
        
@@ -47,8 +51,7 @@ $(document).ready(function(){
 
             }
             else{
-              console.log('difference',Math.abs(difference));
-              console.log('lastDifference',Math.abs(lastDifference));
+
               if(Math.abs(difference)<Math.abs(lastDifference)){
                 //warmer
                 $('.getting-warmer').show();
@@ -63,23 +66,21 @@ $(document).ready(function(){
 
 
             }
-            if(remaining>1){
-              console.log(num);
-              console.log(guess);
-              guesses.push(guess);
+            if(remaining>0){
+
 
               if(difference>15){
-               $('.panel-title').text("TOO HIGH! COLD ! !"+performance);
+               $('.panel-title').text("TOO HIGH! COLD ! !");
 
               }
               else if (difference<15 && difference>0){
-               $('.panel-title').text("-TOO HIGH! HOT"+performance);
+               $('.panel-title').text("-TOO HIGH! HOT");
               }
               else if(difference<-15){
-               $('.panel-title').text("COLD! TOO LOW !"+performance);
+               $('.panel-title').text("COLD! TOO LOW !");
               }
               else if (difference>-15 && difference<0){
-               $('.panel-title').text("TOO LOW! HOT !"+performance);
+               $('.panel-title').text("TOO LOW! HOT !");
               }
 
 
@@ -114,7 +115,7 @@ $(document).ready(function(){
 });
 var testInput = function(guess){
   var num = Number.parseInt(guess);
-  console.log(typeof num);
+
   if(num>0 && num<100){
     return true;
   }
