@@ -7,14 +7,17 @@ $(document).ready(function(){
     var lastDifference = 0;
     var guesses =[];
 
-
+    //ends the game
     var gameOver = function(winOrLose){
         event.preventDefault();
+
+        //removes warmer and colder panel
         $('.getting-warmer').hide();
         $('.getting-colder').hide();
         $('form').remove();
         $('.play-again').show();
         $('.col-xs-2').find('.remaining').text(0);
+
         if(winOrLose){
             $('.panel-title').text('WINNER ! !');
         }
@@ -23,25 +26,34 @@ $(document).ready(function(){
         }
 
     };
-    //pop out the answer
+
+    //pop out interface for the answer
     $('.hint').popover();
+
     //add answer to the hint
     var popover = $('.hint').data('bs.popover');
     popover.options.content = num;
 
     $('form').on('submit',function(event){
-       
+
         var guess = $(this).find('input').val();
 
+
             if(testInput(guess, guesses)){
+                remaining--;
                 scale= scale +0.7;
                 guesses.push(guess);
+                event.preventDefault();
+
+                //status panel is scaled by 0.7 each successful turn
                 $('.panel-title').css({'transform':'scaleY('+scale+')'});
 
-
                 difference = guess-num;
+
                 if(difference ===0){
+
                     gameOver(true);
+                    return false;
 
                 }
 
@@ -84,27 +96,26 @@ $(document).ready(function(){
 
 
 
-                    event.preventDefault();
+                   
                     lastDifference = difference;
-                    remaining--;
+                    
                     $('.col-xs-2').find('.remaining').text(remaining);
 
 
                 }
-                    else{
+                else{
 
-                        gameOver(false);
+                    gameOver(false);
+                    return false;
 
-                    }
+                }
 
 
-                    $('.play-again').on('click',function(){
-                        location.reload();
-                    });
+                $('.play-again').on('click',function(){
+                    location.reload();
+                });
             }
-            else{
-                event.preventDefault();
-            }
+            
 
 
    });
