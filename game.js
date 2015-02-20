@@ -2,7 +2,10 @@ $(document).ready(function(){
    var num = Math.floor(Math.random()*100);
    var remaining = 5;
    var scale=1;
-   var gameOver = function(winOrLose){
+   var performance = "";
+   var lastDifference = 0;
+
+    var gameOver = function(winOrLose){
        event.preventDefault();
        $('form').remove();
        $('.play-again').show();
@@ -14,54 +17,81 @@ $(document).ready(function(){
            $('.panel-title').text('LOSER ! !');
        }
 
-   }
-   $('form').on('submit',function(event){
+   };
+
+   
+
+    $('form').on('submit',function(event){
        scale++;
        $('.panel-title').css({'transform':'scaleY('+scale+')'});
        var guess = $(this).find('input').val();
-       var difference = guess-num;
-       if(guess==num){
+
+
+         
+
+
+       var guesses =[];
+       difference = guess-num;
+       if(difference ===0){
            gameOver(true);
 
        }
 
+         if(remaining==5){
+            performance = "";
 
-       if(remaining>1){
 
 
-           if(difference>20){
-               $('.panel-title').text("OO TOO HIGH! COLD ! !");
+            panelTitle(difference);
+          }
+          if(remaining>1){
+            console.log(num);
+            console.log(guess);
+            guesses.push(guess);
+            
+            if(difference>15){
+             $('.panel-title').text("TOO HIGH! COLD ! !"+performance);
 
-           }
-           else if (difference<10 && difference>0){
-               $('.panel-title').text("HOY !HOT ! TOO HIGH!");
-           }
-           else if(difference<-20){
-               $('.panel-title').text("BIT COLD! LOWER !");
-           }
-           else if (difference>-10 && difference<0){
-               $('.panel-title').text("TOO LOW! YOUR HOT ! !");
-           }
+            }
+            else if (difference<15 && difference>0){
+             $('.panel-title').text("-TOO HIGH! HOT"+performance);
+            }
+            else if(difference<-15){
+             $('.panel-title').text("COLD! TOO LOW !"+performance);
+            }
+            else if (difference>-15 && difference<0){
+             $('.panel-title').text("TOO LOW! HOT !"+performance);
+            }
 
-           event.preventDefault();
 
-           console.log(guess);
-           remaining--;
-           $('.col-xs-2').find('.remaining').text(remaining);
 
-       }
-       else{
-           gameOver(false);
 
-       }
+             
+
+
+             event.preventDefault();
+
+             remaining--;
+             $('.col-xs-2').find('.remaining').text(remaining);
+
+
+          }
+         else{
+
+             gameOver(false);
+
+         }
+     
 
        $('.play-again').on('click',function(){
             location.reload();
-       })
+       });
 
 
 
    });
-    console.log(num);
+    
+    
 
 });
+
