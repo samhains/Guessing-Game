@@ -31,30 +31,41 @@
 <h4>'</h4>
 <h4>S</h4></div>
 </div>
-    <div class="col-xs-8">
-        <div class="panel panel-danger main-box" >
-            <div class="panel-heading">
-                <h4 class="panel-title">guessing game</h4>
-            </div><br>
-            <div class="panel-body" >
-                <form>
-                <div class="btn-group-vertical">
-
-                    <input type="number" class ="form-control" placeholder="1 - 100" style="text-align: center">
-                    <button type="submit" class="btn button-color">guess</button>
+    <div class="col-xs-8 row">
 
 
-                    <button type="button" class="btn button-color"><div style="transform:rotate(180deg);">?? hint ??</div></button>
+            <div class="panel panel-danger main-box " >
 
-                </div></form>
+
+                <div class="panel-heading">
+                    <h4 class="panel-title">guessing game</h4>
+                </div><br>
+                <div class="getting-warmer">
+                <button class="alert-danger ">warmer</button><button class="alert-danger">warmer</button><button class="alert-danger">warmer</button></div>
+
+                <div class="getting-colder">
+                <button class="alert-default ">colder</button><button class="alert-default">colder</button><button class="alert-default">colder</button></div>
+                <div class="panel-body" >
+
+                    <form>
+                    <div class="btn-group-vertical">
+
+                        <input type="number"  class ="form-control" placeholder="1 - 100" style="text-align: center">
+                        <button type="submit" class="btn button-color">guess</button>
+                        <button type="button" class="btn button-color" data-toggle="popover" title="the number is:" data-content="">?? hint ??</div></button>
+
+                    </div></form>
+
+                </div>
+
+                <div class="row question-marks">
+                    <div class="col-xs-4"><h3>?</h3 ></div>
+                    <div class="col-xs-4"><h2>¿</h2></div>
+                    <div class="col-xs-4"><h1>?</h1></div>
+                </div><br>
+                <button type="button" class="btn button-color play-again">play again</button>
             </div>
-            <div class="row question-marks">
-                <div class="col-xs-4"><h3>?</h3 ></div>
-                <div class="col-xs-4"><h2>¿</h2></div>
-                <div class="col-xs-4"><h1>?</h1></div>
-            </div><br>
-            <button type="button" class="btn button-color play-again">play again</button>
-        </div>
+
 
     </div>
 <div class="col-xs-2">
@@ -74,9 +85,10 @@
 <!-- Latest compiled and minified CSS -->
 
 <!-- Latest compiled and minified JavaScript -->
-<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="game.js"></script>
 </body>

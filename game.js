@@ -1,12 +1,17 @@
 $(document).ready(function(){
    var num = Math.floor(Math.random()*100);
+   console.log(num);
    var remaining = 5;
    var scale=1;
    var performance = "";
    var lastDifference = 0;
+   var guesses =[];
+   $('.hint').popover();
 
     var gameOver = function(winOrLose){
        event.preventDefault();
+       $('.getting-warmer').hide();
+       $('.getting-colder').hide();
        $('form').remove();
        $('.play-again').show();
        $('.col-xs-2').find('.remaining').text(0);
@@ -19,79 +24,104 @@ $(document).ready(function(){
 
    };
 
-   
 
     $('form').on('submit',function(event){
-       scale++;
-       $('.panel-title').css({'transform':'scaleY('+scale+')'});
+       
        var guess = $(this).find('input').val();
 
-
-         
-
-
-       var guesses =[];
-       difference = guess-num;
-       if(difference ===0){
-           gameOver(true);
-
-       }
-
-         if(remaining==5){
-            performance = "";
+       if(testInput(guess)){
+         scale= scale +0.7;
+         $('.panel-title').css({'transform':'scaleY('+scale+')'});
 
 
-
-            panelTitle(difference);
-          }
-          if(remaining>1){
-            console.log(num);
-            console.log(guess);
-            guesses.push(guess);
-            
-            if(difference>15){
-             $('.panel-title').text("TOO HIGH! COLD ! !"+performance);
-
-            }
-            else if (difference<15 && difference>0){
-             $('.panel-title').text("-TOO HIGH! HOT"+performance);
-            }
-            else if(difference<-15){
-             $('.panel-title').text("COLD! TOO LOW !"+performance);
-            }
-            else if (difference>-15 && difference<0){
-             $('.panel-title').text("TOO LOW! HOT !"+performance);
-            }
-
-
-
-
-             
-
-
-             event.preventDefault();
-
-             remaining--;
-             $('.col-xs-2').find('.remaining').text(remaining);
-
-
-          }
-         else{
-
-             gameOver(false);
+         difference = guess-num;
+         if(difference ===0){
+             gameOver(true);
 
          }
-     
 
-       $('.play-again').on('click',function(){
-            location.reload();
-       });
+           if(remaining==5){
 
+
+
+
+            }
+            else{
+              console.log('difference',Math.abs(difference));
+              console.log('lastDifference',Math.abs(lastDifference));
+              if(Math.abs(difference)<Math.abs(lastDifference)){
+                //warmer
+                $('.getting-warmer').show();
+                $('.getting-colder').hide();
+
+              }
+              else{
+                $('.getting-colder').show();
+                $('.getting-warmer').hide();
+
+              }
+
+
+            }
+            if(remaining>1){
+              console.log(num);
+              console.log(guess);
+              guesses.push(guess);
+
+              if(difference>15){
+               $('.panel-title').text("TOO HIGH! COLD ! !"+performance);
+
+              }
+              else if (difference<15 && difference>0){
+               $('.panel-title').text("-TOO HIGH! HOT"+performance);
+              }
+              else if(difference<-15){
+               $('.panel-title').text("COLD! TOO LOW !"+performance);
+              }
+              else if (difference>-15 && difference<0){
+               $('.panel-title').text("TOO LOW! HOT !"+performance);
+              }
+
+
+
+
+               event.preventDefault();
+               lastDifference = difference;
+               remaining--;
+               $('.col-xs-2').find('.remaining').text(remaining);
+
+
+            }
+           else{
+
+               gameOver(false);
+
+           }
+
+
+         $('.play-again').on('click',function(){
+              location.reload();
+         });
+     }
+     else{
+      event.preventDefault();
+     }
 
 
    });
-    
-    
+
 
 });
+var testInput = function(guess){
+  var num = Number.parseInt(guess);
+  console.log(typeof num);
+  if(num>0 && num<100){
+    return true;
+  }
+  else{
+    alert("Please enter number between 1 and 100");
+    return false;
+  }
 
+
+};

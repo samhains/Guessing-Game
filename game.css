@@ -40,3 +40,29 @@ body {
 .play-again{
     display:none;
 }
+
+.getting-warmer{
+    display:none;
+    position:absolute;
+    text-align: center;
+    margin-bottom: 3px;
+    margin-left:26px;
+
+
+}
+.getting-colder{
+    display:none;
+    position:absolute;
+    text-align: center;
+    margin-bottom: 3px;
+    margin-left:33px;
+
+}
+.panel-body{
+    margin-top: 20px;
+}
+.alert-default {
+color: #ffffff;
+background-color: #c0c0c0;
+border-color: #ffffff;
+}
